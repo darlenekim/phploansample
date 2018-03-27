@@ -1,0 +1,15 @@
+// We have a loan for 5 years with monthly payments
+
+// How many payments loan schedule has
+$noOfPayment = 5*12;
+// First day of the payment schedule (first day when loan principal is out)
+$startDate = new \DateTime('2000-01-01');
+// What is the pattern used to generate payment dates
+$dateIntervalPattern = 'P1M';
+
+$config = new PaymentScheduleConfig($noOfPayments, $startDate, $dateIntervalPattern);
+$schedule = PaymentScheduleFactory::generate($config);
+var_dump($schedule instanceof PaymentScheduleInterface); // true
+
+// Get array of payment dates
+$paymentDates = $schedule->getPaymentDates();
